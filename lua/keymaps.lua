@@ -6,7 +6,7 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>cq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -51,4 +51,32 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- vim: ts=2 sts=2 sw=2 et
+-- Use JJ to quit insert mode
+vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
+-- Save and leave insert mode
+vim.keymap.set({ 'x', 'n', 's' }, '<C-s>', '<Cmd>w<Cr>', { desc = 'Save file' })
+vim.keymap.set({ 'i' }, '<C-s>', '<Cmd>w<Cr><Esc>', { desc = 'Save file' })
+-- Set mini.files explorer
+vim.keymap.set({ 'n' }, '<Leader>e', function()
+  MiniFiles.open()
+end, { desc = 'Explore files' })
+
+-- Picker commands
+vim.keymap.set({ 'n' }, '<Leader>fa', function()
+  Snacks.picker.pickers()
+end, { desc = 'All pickers' })
+vim.keymap.set({ 'n' }, '<Leader>fp', function()
+  Snacks.picker.projects()
+end, { desc = 'Find projects' })
+vim.keymap.set({ 'n' }, '<Leader>fb', function()
+  Snacks.picker.buffers()
+end, { desc = 'Find buffers' })
+vim.keymap.set({ 'n' }, '<Leader>fr', function()
+  Snacks.picker.recent()
+end, { desc = 'Find recent files' })
+vim.keymap.set({ 'n' }, '<Leader>/', function()
+  Snacks.picker.grep()
+end, { desc = 'Grep files' })
+vim.keymap.set({ 'n' }, '<Leader> ', function()
+  Snacks.picker.files()
+end, { desc = 'Find files' })

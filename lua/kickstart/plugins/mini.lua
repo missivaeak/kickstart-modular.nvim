@@ -16,6 +16,24 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.sessions').setup()
+      require('mini.files').setup {
+        mappings = {
+          close = 'q',
+          go_in = '<Right>',
+          go_in_plus = '<S-Right>',
+          go_out = '<Left>',
+          go_out_plus = '<S-Left>',
+          mark_goto = "'",
+          mark_set = 'm',
+          reset = '<BS>',
+          reveal_cwd = '@',
+          show_help = 'g?',
+          synchronize = '=',
+          trim_left = '<',
+          trim_right = '>',
+        },
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
