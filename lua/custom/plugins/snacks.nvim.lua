@@ -12,8 +12,8 @@ return {
       sections = {
         { section = 'header' },
         { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
-        { icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
         { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
+        { icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
         { section = 'startup' },
       },
       preset = {
@@ -50,8 +50,22 @@ return {
                                             ██    ████                      
                                             ██████                          ]],
         keys = {
-          { icon = ' ', key = 'c', desc = 'Config', action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-          { icon = '', key = 'p', desc = 'Projects', action = ':lua Snacks.picker.projects()' },
+          {
+            icon = ' ',
+            key = 'c',
+            desc = 'Config',
+            action = function()
+              require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
+            end,
+          },
+          {
+            icon = '',
+            key = 'p',
+            desc = 'Projects',
+            action = function()
+              require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown())
+            end,
+          },
           { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
           { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
@@ -61,7 +75,7 @@ return {
     -- explorer = { enabled = true },
     indent = { enabled = true },
     -- input = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = false },
     notifier = { enabled = true },
     -- quickfile = { enabled = true },
     -- scope = { enabled = true },
