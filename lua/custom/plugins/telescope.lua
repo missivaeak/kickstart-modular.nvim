@@ -82,9 +82,18 @@ return {
           oldfiles = {
             theme = 'dropdown',
           },
+          keymaps = {
+            theme = 'dropdown',
+          },
+          sessions_picker = {
+            theme = 'dropdown',
+          },
         },
         extensions = {
           ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
+          sessions_picker = {
             require('telescope.themes').get_dropdown(),
           },
         },
@@ -94,14 +103,19 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'projects')
+      pcall(require('telescope').load_extension, 'sessions_picker')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<Leader><Leader>', builtin.find_files, { desc = 'Find files' })
+      vim.keymap.set('n', '<Leader><Leader>', builtin.find_files, { desc = 'Find file' })
       vim.keymap.set('n', '<Leader>/', builtin.live_grep, { desc = 'Grep files' })
       vim.keymap.set('n', '<Leader>fb', builtin.buffers, { desc = 'Find buffer' })
       vim.keymap.set('n', '<Leader>fd', builtin.diagnostics, { desc = 'Find diagnostics' })
-      vim.keymap.set('n', '<Leader>fr', builtin.oldfiles, { desc = 'Find recent files' })
+      vim.keymap.set('n', '<Leader>fr', builtin.oldfiles, { desc = 'Find recent file' })
+      vim.keymap.set('n', '<Leader>fk', builtin.keymaps, { desc = 'Find keymaps' })
+      vim.keymap.set('n', '<Leader>fs', function()
+        require('telescope').extensions.sessions_picker.sessions_picker(require('telescope.themes').get_dropdown())
+      end, { desc = 'Find session' })
       vim.keymap.set('n', '<Leader>f/', function()
         builtin.live_grep {
           grep_open_files = true,

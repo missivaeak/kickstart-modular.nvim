@@ -66,7 +66,15 @@ return {
               require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown())
             end,
           },
-          { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
+          {
+            icon = '󰂻',
+            key = 's',
+            desc = 'Sessions',
+            action = function()
+              require('telescope').extensions.sessions_picker.sessions_picker(require('telescope.themes').get_dropdown())
+            end,
+          },
+          { icon = ' ', key = 'r', desc = 'Restore Session', section = 'session' },
           { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
         },
