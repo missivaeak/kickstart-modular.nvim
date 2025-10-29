@@ -12,7 +12,42 @@ return {
       sections = {
         { section = 'header' },
         { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
-        { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
+        -- { icon = ' ', title = 'Projects' },
+        -- function()
+        --   ---@type snacks.dashboard.Item[]
+        --   local projects = {
+        --     {
+        --       icon = ' ',
+        --       key = 'x',
+        --       desc = 'PRUT',
+        --       indent = 2,
+        --       action = function()
+        --         require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
+        --       end,
+        --     },
+        --     {
+        --       icon = ' ',
+        --       key = 'x',
+        --       desc = 'PRUT',
+        --       action = function()
+        --         require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
+        --       end,
+        --     },
+        --   }
+        --
+        --   for k, v in ipairs(require('telescope').extensions.project.finders.project_finder()) do
+        --     projects[#projects + 1] = {
+        --       icon = ' ',
+        --       key = 'x',
+        --       desc = 'inn pPRUT',
+        --       action = function()
+        --         require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
+        --       end,
+        --     }
+        --   end
+        --   return projects
+        -- end,
+        -- { desc = ' ' },
         { icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
         { section = 'startup' },
       },
@@ -63,18 +98,19 @@ return {
             key = 'p',
             desc = 'Projects',
             action = function()
-              require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown())
+              require('telescope').extensions.project.project(require('telescope.themes').get_dropdown())
             end,
           },
           {
             icon = '󰂻',
             key = 's',
             desc = 'Sessions',
-            action = function()
-              require('telescope').extensions.sessions_picker.sessions_picker(require('telescope.themes').get_dropdown())
-            end,
+            action = require('persistence').select,
+            -- function()
+            --   require('telescope').extensions.sessions_picker.sessions_picker(require('telescope.themes').get_dropdown())
+            -- end,
           },
-          { icon = ' ', key = 'r', desc = 'Restore Session', section = 'session' },
+          { icon = ' ', key = 'r', desc = 'Restore session', section = 'session' },
           { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
         },

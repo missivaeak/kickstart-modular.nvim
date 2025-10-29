@@ -60,6 +60,9 @@ vim.keymap.set({ 'i' }, '<C-s>', '<Cmd>w<Cr><Esc>', { desc = 'Save file' })
 vim.keymap.set({ 'n' }, '<Leader>e', function()
   MiniFiles.open()
 end, { desc = 'Explore files' })
+-- Buffer commands
+vim.keymap.set({ 'n' }, '<Leader>bd', '<Cmd>bd<Cr>', { desc = 'Buffer delete' })
+vim.keymap.set({ 'n' }, '<Leader>bo', '<Cmd>%bd|e#<Cr>', { desc = 'Buffer delete' })
 
 -- Picker commands
 -- vim.keymap.set({ 'n' }, '<Leader>fa', function()

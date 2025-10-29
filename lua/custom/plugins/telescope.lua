@@ -4,7 +4,6 @@
 -- you do for a plugin at the top level, you can do for a dependency.
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -96,13 +95,20 @@ return {
           sessions_picker = {
             require('telescope.themes').get_dropdown(),
           },
+          project = {
+            base_dirs = { '~/p/', '~/.config/' },
+            on_project_selected = function(prompt_bufnr)
+              require('telescope._extensions.project.actions').change_working_directory(prompt_bufnr, false)
+              require('persistence').load()
+            end,
+          },
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'projects')
+      pcall(require('telescope').load_extension, 'project')
       pcall(require('telescope').load_extension, 'sessions_picker')
 
       -- See `:help telescope.builtin`
@@ -123,7 +129,7 @@ return {
         }
       end, { desc = 'Grep open files' })
       vim.keymap.set('n', '<Leader>fp', function()
-        require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown())
+        require('telescope').extensions.project.project(require('telescope.themes').get_dropdown())
       end, { desc = 'Find projects' })
       -- vim.keymap.set('n', '<Leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       -- vim.keymap.set('n', '<Leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
