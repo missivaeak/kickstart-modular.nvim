@@ -53,33 +53,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Use JJ to quit insert mode
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
+vim.keymap.set('t', 'jj', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 -- Save and leave insert mode
 vim.keymap.set({ 'x', 'n', 's' }, '<C-s>', '<Cmd>w<Cr>', { desc = 'Save file' })
 vim.keymap.set({ 'i' }, '<C-s>', '<Cmd>w<Cr><Esc>', { desc = 'Save file' })
--- Set mini.files explorer
-vim.keymap.set({ 'n' }, '<Leader>e', function()
-  MiniFiles.open()
-end, { desc = 'Explore files' })
--- Buffer commands
-vim.keymap.set({ 'n' }, '<Leader>bd', '<Cmd>bd<Cr>', { desc = 'Buffer delete' })
-vim.keymap.set({ 'n' }, '<Leader>bo', '<Cmd>%bd|e#<Cr>', { desc = 'Buffer delete' })
-
--- Picker commands
--- vim.keymap.set({ 'n' }, '<Leader>fa', function()
---   Snacks.picker.pickers()
--- end, { desc = 'All pickers' })
--- vim.keymap.set({ 'n' }, '<Leader>fp', function()
---   Snacks.picker.projects()
--- end, { desc = 'Find projects' })
--- vim.keymap.set({ 'n' }, '<Leader>fb', function()
---   Snacks.picker.buffers()
--- end, { desc = 'Find buffers' })
--- vim.keymap.set({ 'n' }, '<Leader>fr', function()
---   Snacks.picker.recent()
--- end, { desc = 'Find recent files' })
--- vim.keymap.set({ 'n' }, '<Leader>/', function()
---   Snacks.picker.grep()
--- end, { desc = 'Grep files' })
--- vim.keymap.set({ 'n' }, '<Leader> ', function()
---   Snacks.picker.files()
--- end, { desc = 'Find files' })

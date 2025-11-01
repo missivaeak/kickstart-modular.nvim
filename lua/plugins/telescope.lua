@@ -112,25 +112,6 @@ return {
       pcall(require('telescope').load_extension, 'sessions_picker')
 
       -- See `:help telescope.builtin`
-      local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<Leader><Leader>', builtin.find_files, { desc = 'Find file' })
-      vim.keymap.set('n', '<Leader>/', builtin.live_grep, { desc = 'Grep files' })
-      vim.keymap.set('n', '<Leader>fb', builtin.buffers, { desc = 'Find buffer' })
-      vim.keymap.set('n', '<Leader>fd', builtin.diagnostics, { desc = 'Find diagnostics' })
-      vim.keymap.set('n', '<Leader>fr', builtin.oldfiles, { desc = 'Find recent file' })
-      vim.keymap.set('n', '<Leader>fk', builtin.keymaps, { desc = 'Find keymaps' })
-      vim.keymap.set('n', '<Leader>fs', function()
-        require('telescope').extensions.sessions_picker.sessions_picker(require('telescope.themes').get_dropdown())
-      end, { desc = 'Find session' })
-      vim.keymap.set('n', '<Leader>f/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Grep open files',
-        }
-      end, { desc = 'Grep open files' })
-      vim.keymap.set('n', '<Leader>fp', function()
-        require('telescope').extensions.project.project(require('telescope.themes').get_dropdown())
-      end, { desc = 'Find projects' })
       -- vim.keymap.set('n', '<Leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       -- vim.keymap.set('n', '<Leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       -- vim.keymap.set('n', '<Leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })

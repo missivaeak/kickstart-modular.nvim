@@ -57,15 +57,15 @@ return {
         },
       },
 
-      -- Document existing key chains
-      spec = {
-        { '<leader>f', group = 'Find' },
-        { '<leader>c', group = 'Code' },
-        { '<leader>g', group = 'Git' },
-        { '<leader>b', group = 'Buffer' },
-        { '<leader>t', group = 'Tab' },
-        { '<leader>w', group = 'Window' },
-      },
+      -- -- Document existing key chains
+      -- spec = {
+      --   { '<leader>f', group = 'Find' },
+      --   { '<leader>c', group = 'Code' },
+      --   { '<leader>g', group = 'Git' },
+      --   { '<leader>b', group = 'Buffer' },
+      --   { '<leader>t', group = 'Tab' },
+      --   { '<leader>w', group = 'Window' },
+      -- },
     },
   },
 }

@@ -7,11 +7,30 @@
 --
 --  To update plugins you can run
 --    :Lazy update
---
+
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+
+  -- Set theme early
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('tokyonight').setup {
+        styles = {
+          comments = { italic = false }, -- Disable italics in comments
+        },
+      }
+
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      vim.cmd.colorscheme 'tokyonight-day'
+    end,
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
