@@ -11,7 +11,20 @@ whichkey.add {
 }
 
 -- Root commands
-vim.keymap.set({ 'n' }, '<Leader>e', require('mini.files').open, { desc = 'Explore files' })
+vim.keymap.set({ 'n' }, '<Leader>e', function()
+  local MiniFiles = require 'mini.files'
+  local buffer_name = vim.api.nvim_buf_get_name(0)
+  local in_starter = buffer_name:find 'ministarter' ~= nil
+
+  if in_starter then
+    MiniFiles.open()
+    MiniFiles.reveal_cwd()
+    return
+  end
+
+  local _ = MiniFiles.close() or MiniFiles.open(buffer_name, false)
+  vim.schedule(MiniFiles.reveal_cwd)
+end, { desc = 'Explore files' })
 vim.keymap.set('n', '<Leader>/', builtin.live_grep, { desc = 'Find text' })
 vim.keymap.set('n', '<Leader><Leader>', builtin.find_files, { desc = 'Find file' })
 vim.keymap.set('n', '<Leader>q', '<Cmd>qa<Cr>', { desc = 'Quit all buffers' })
