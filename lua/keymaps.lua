@@ -54,6 +54,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Use JJ to quit insert mode
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
 -- Save and leave insert mode
 vim.keymap.set({ 'x', 'n', 's' }, '<C-s>', '<Cmd>w<Cr>', { desc = 'Save file' })
 vim.keymap.set({ 'i' }, '<C-s>', '<Cmd>w<Cr><Esc>', { desc = 'Save file' })

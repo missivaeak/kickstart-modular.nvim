@@ -7,7 +7,6 @@ whichkey.add {
   { '<leader>c', group = 'Code' },
   { '<leader>g', group = 'Git' },
   { '<leader>b', group = 'Buffer' },
-  { '<leader>t', group = 'Tab' },
   { '<leader>w', group = 'Window' },
 }
 
@@ -15,7 +14,30 @@ whichkey.add {
 vim.keymap.set({ 'n' }, '<Leader>e', require('mini.files').open, { desc = 'Explore files' })
 vim.keymap.set('n', '<Leader>/', builtin.live_grep, { desc = 'Find text' })
 vim.keymap.set('n', '<Leader><Leader>', builtin.find_files, { desc = 'Find file' })
+vim.keymap.set('n', '<Leader>q', '<Cmd>qa<Cr>', { desc = 'Quit all buffers' })
+
+-- Terminal stuff
 vim.keymap.set('n', '<Leader>t', '<Cmd>ToggleTerm<Cr>', { desc = 'Terminal' })
+vim.keymap.set({ 'x', 'n', 's', 'i' }, '<C- >', function()
+  for _, terminal in ipairs(require('toggleterm.terminal').get_all()) do
+    if terminal:is_open() and terminal:is_focused() then
+      vim.cmd 'wincmd p' -- go to last window
+      return
+    end
+
+    if not terminal:is_open() then
+      terminal:open()
+    end
+
+    -- if not terminal:is_focused() then
+    terminal:focus()
+    -- end
+
+    return
+  end
+
+  return require('toggleterm').toggle()
+end, { desc = 'Terminal test' })
 
 -- Buffer commands
 vim.keymap.set({ 'n' }, '<Leader>bd', '<Cmd>bd<Cr>', { desc = 'Delete buffer' })
